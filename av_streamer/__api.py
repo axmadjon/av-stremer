@@ -31,7 +31,7 @@ class MyFrameStream(MyStream):
         self.__stream.height = stream.height
 
     def can_mux(self, packet):
-        return packet.stream.type == b'video'
+        return packet.stream.type == 'video'
 
     def mux(self, packet):
         if not self.can_mux(packet) or not self.__stream:
@@ -59,7 +59,7 @@ class MyAudioStream(MyStream):
         self.__stream.options = {}
 
     def can_mux(self, packet):
-        return packet.stream.type == b'audio'
+        return packet.stream.type == 'audio'
 
     def mux(self, packet):
         if not self.can_mux(packet) or not self.__stream:
@@ -116,10 +116,10 @@ class MyInputStream:
         return 25
 
     def frame_stream(self):
-        return next(s for s in self.__input.streams if s.type == b'video')
+        return next(s for s in self.__input.streams if s.type == 'video')
 
     def audio_stream(self):
-        return next(s for s in self.__input.streams if s.type == b'audio')
+        return next(s for s in self.__input.streams if s.type == 'audio')
 
     def __mux(self, packet, output_stream):
         if type(output_stream) == list:

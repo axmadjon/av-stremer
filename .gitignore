@@ -1,0 +1,15 @@
+.idea
+.git
+*/*.pyc
+*.pyc
+*.iml
+.gradle
+/local.properties
+*/.idea
+.DS_Store
+/build
+/captures
+*/workspace.xml
+/configure
+*/*.mp4
+*.mp4
