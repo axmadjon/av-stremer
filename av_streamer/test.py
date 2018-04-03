@@ -9,7 +9,7 @@ def frame(image):
 
 
 def connect_camera():
-    start_stream('rtsp://192.168.10.210/Streaming/Channels/1', 'test.mp4', frame)
+    start_stream('rtsp://192.168.10.210/Streaming/Channels/1', '/home/smartup/z_test_ffmpeg/test.mp4', frame)
 
     print ('reconnect at 5 second')
     sleep(5)

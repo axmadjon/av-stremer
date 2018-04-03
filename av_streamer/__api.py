@@ -25,7 +25,7 @@ class MyFrameStream(MyStream):
         self.__frame_listener = frame_listener
 
     def set_input(self, input):
-        stream = input.audio_stream()
+        stream = input.frame_stream()
         self.__stream.pix_fmt = stream.pix_fmt
         self.__stream.width = stream.width
         self.__stream.height = stream.height
@@ -44,10 +44,11 @@ class MyFrameStream(MyStream):
                     self.__frame_listener(cv2_image)
 
                 frame = av.VideoFrame.from_ndarray(cv2_image, format='bgr24')
+                frame.pts = None
                 for packet in self.__stream.encode(frame):
                     self.__output.mux(packet)
         except Exception as e:
-            print ('Error on run VideoOutput {}'.format(e))
+            print('Error on run VideoOutput {}'.format(e))
 
 
 ########################################################################################################################
@@ -82,6 +83,9 @@ class MyVideoStream(MyStream):
         self.__output = output
         self.__frame_stream = MyFrameStream(self.__output, fps)
         self.__audio_stream = MyAudioStream(self.__output)
+
+    def set_input(self, input):
+        self.__frame_stream.set_input(input=input)
 
     def frame_listener(self, frame_listener):
         self.__frame_stream.frame_listener(frame_listener)
@@ -143,6 +147,7 @@ class MyInputStream:
 def start_stream(rtsp_url, output_file, frame_listener=None):
     rtsp_stream = MyInputStream(av.open(rtsp_url, 'r'))
     video_stream = MyVideoStream(av.open(output_file, 'w'), rtsp_stream.frame_fps())
+    video_stream.set_input(rtsp_stream)
     video_stream.frame_listener(frame_listener)
 
     rtsp_stream.run(video_stream)
