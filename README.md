@@ -6,7 +6,7 @@ Full documentation [PyAV Docs](http://mikeboers.github.io/PyAV/index.html) and [
 
 How install [PyAV Install](http://mikeboers.github.io/PyAV/installation.html)
 
-Instalation example
+Installation example
 
     sudo apt-get install ffmpeg x264
     
