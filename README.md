@@ -17,3 +17,16 @@ Installation example
         libavutil-dev libswscale-dev libavresample-dev libavfilter-dev
     
     pip install av
+
+
+sudo apt-get update
+sudo apt-get -y install autoconf automake build-essential libass-dev libfreetype6-dev libtheora-dev libtool libvorbis-dev pkg-config texinfo zlib1g-dev 
+
+udo apt-get install libfdk-aac-dev
+sudo apt-get install libmp3lame-dev
+sudo apt-get install yasm
+
+./configure —enable-network —enable-protocol=tcp —enable-demuxer=rtsp —enable-decoder=h264 —disable-static —enable-shared —disable-doc —enable-libass —enable-libfdk-aac —enable-libfreetype —enable-libtheora —enable-libvorbis —enable-libmp3lame —enable-nonfree —enable-gpl
+make
+sudo make install
+sudo ldconfig
