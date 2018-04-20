@@ -34,3 +34,7 @@ sudo apt-get install yasm
 make
 sudo make install
 sudo ldconfig
+
+sudo apt-get install yasm libvpx-dev libx264-dev
+
+./configure --enable-network --enable-protocol=tcp --enable-demuxer=rtsp --enable-decoder=h264 --disable-static --enable-shared --disable-doc --enable-libass --enable-libfdk-aac --enable-libfreetype --enable-libtheora --enable-libvpx --enable-libvorbis --enable-libmp3lame --enable-nonfree --enable-gpl --enable-libx264
